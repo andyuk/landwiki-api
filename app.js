@@ -21,9 +21,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//app.get('/', sites.index);
+app.get('/v1/sites', sites.showAll);
 app.get('/v1/sites/:id', sites.detail);
-//app.get('/land/add', sites.add);
+app.post('/v1/sites', sites.addSite);
+app.put('/v1/sites/:id', sites.updateSite);
+app.delete('/v1/sites/:id', sites.deleteSite);
 
 mongoose.connect(MONGO_URI, function(err) {
   if (err) throw err;
